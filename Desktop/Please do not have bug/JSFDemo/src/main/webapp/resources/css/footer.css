@@ -1,0 +1,74 @@
+.footer-bar {
+	position: absolute;
+	background: none repeat scroll 0 0 #FFF;
+	border-top: 1px solid #red;
+	color: rgba(0, 0, 0, 0.87);
+	width: 100%;
+	bottom: 0;
+	padding: 12px 12px;
+	z-index: 9;
+	height: 51px;
+	bottom: -1200px;
+}
+
+.footer-bar .footer-left {
+	float: left;
+	line-height: 14px;
+	vertical-align: bottom;
+	display: table-row;
+}
+
+.footer-bar .footer-right {
+	float: right;
+	line-height: 14px;
+	vertical-align: bottom;
+	display: table-row;
+	padding-top: 11px;
+}
+
+.footer-bar .footer-left small {
+	padding-left: 10px;
+	display: table-cell;
+}
+
+.footer-bar .footer-right small {
+	padding-left: 10px;
+	display: table-cell;
+	vertical-align: text-bottom;
+}
+
+.footer-bar .footer-logo-wrapper {
+	display: table-cell;
+}
+
+@media only screen and (max-width: 495px) {
+	.footer-bar {
+		text-align: center;
+	}
+	.footer-bar .footer-left {
+		width: 100%;
+		float: none;
+		text-align: center;
+		display: block;
+	}
+	.footer-bar .footer-left small {
+		display: block;
+	}
+	.footer-bar .footer-right {
+		width: 100%;
+		float: none;
+		text-align: center;
+		display: block;
+	}
+	.footer-bar .footer-right small {
+		display: block;
+	}
+	.footer-bar .footer-logo-wrapper {
+		display: block;
+		padding: 5px 0px;
+	}
+	.footer-bar .footer-logo {
+		margin: 0 auto;
+		vertical-align: middle;
+	}
+}

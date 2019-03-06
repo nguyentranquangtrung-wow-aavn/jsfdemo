@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+	<link type="text/css" rel="stylesheet" href="resources/css/style.css" />
+</h:head>
+<h:body>
+	<div id="wrapper" style="position: relative;">
+		<div id="data">
+			<h1 id="pagetittle">CRUD DEMO</h1>
+			<h2 id="demoDate">
+				Amigo - March 6<sup>th</sup>, 2019
+			</h2>
+			<h:form id="emForm">
+				<h2>Employee Form</h2>
+				<h:panelGrid columns="3" styleClass="inputTable">
+		
+			First Name:
+			<h:inputText id="firstName" value="#{webHandler.employee.firstName}"
+						size="20" required="true" label="firstName" />
+					<h:message for="firstName" style="color:red" />
+		
+			Last Name:
+			<h:inputText id="lastName" value="#{webHandler.employee.lastName}"
+						size="20" required="true" label="lastName" />
+					<h:message for="lastName" style="color:red" />
+		
+			Gender:
+			<h:selectOneRadio id="gender" value="#{webHandler.employee.gender}">
+						<f:selectItem itemLabel="Male" itemValue="male" />
+						<f:selectItem itemLabel="Female" itemValue="female" />
+						<f:selectItem itemLabel="Undefined" itemValue="undefined" />
+					</h:selectOneRadio>
+					<h:message for="gender" style="color:red" />
+		
+			Email:
+			<h:inputText id="email" value="#{webHandler.employee.email}"
+						size="20" required="true" label="email">
+						<f:validateRegex
+							pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,6})$" />
+					</h:inputText>
+					<h:message for="email" style="color:red" />
+		
+			Department:
+			<h:selectOneMenu id="department" dynamic="true"
+						value="#{webHandler.department.id}"
+						valueChangeListener="#{webHandler.changeDepartment}">
+						<f:selectItems value="#{webHandler.departmentList}" var="_dept"
+							itemValue="#{_dept.id}" itemLabel="#{_dept.name}" />
+					</h:selectOneMenu>
+					<h:message for="deparment" style="color:red" />
+				</h:panelGrid>
+				<br />
+				<br />
+				<h:commandButton value="Add new" update="display" icon="pi pi-check"
+					disabled="#{webHandler.isEmployeeExisting()}"
+					action="#{webHandler.addNewEmployee()}" />
+			</h:form>
+
+
+			<br /> <br />
+
+			<h:form>
+				<h2>Data table</h2>
+				<h:form>
+					<p:dataTable var="emp" value="#{webHandler.employeeList}"
+						reflow="true" rows="10" paginator="true"
+						style="max-width:80%; margin:0 auto">
+						<p:column headerText="ID">
+							<h:outputText value="#{emp.id}" />
+						</p:column>
+
+						<p:column headerText="First Name" priority="3">
+							<h:outputText value="#{emp.firstName}" />
+						</p:column>
+
+						<p:column headerText="Last Name" priority="2">
+							<h:outputText value="#{emp.lastName}" />
+						</p:column>
+						<p:column headerText="Gender" priority="2">
+							<h:outputText value="#{emp.gender}" />
+						</p:column>
+						<p:column headerText="Email" priority="2">
+							<h:outputText value="#{emp.email}" />
+						</p:column>
+					</p:dataTable>
+
+				</h:form>
+			</h:form>
+		</div>
+		<div id="img-container">
+			<img id="bg-img" src="bg.png"></img>
+		</div>
+		<ui:include src="/footer.xhtml" />
+	</div>
+</h:body>
+</html>
